@@ -14,6 +14,7 @@ class MoviesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
      initialRoute: Routes.navebarScreen,
      onGenerateRoute: AppRouter.generateRoute,
       title: 'Flutter Demo',
