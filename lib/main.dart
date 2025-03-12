@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/routing/app_router.dart';
 import 'package:movies_app/core/routing/routes.dart';
+import 'package:movies_app/core/utils/services_locator.dart';
 import 'package:movies_app/core/widgets/navbar_app.dart';
 
 void main() {
+  setUp();
   runApp(const MoviesApp());
 }
 

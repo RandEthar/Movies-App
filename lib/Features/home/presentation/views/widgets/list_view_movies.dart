@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/core/theming/styles.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/Features/home/data/model/movies_model.dart';
+import 'package:movies_app/Features/home/presentation/manger/cubit/featch_movies_cubit.dart';
+import 'package:movies_app/Features/home/presentation/views/widgets/list_view_movies_item.dart';
 
 class ListViewMovies extends StatelessWidget {
   const ListViewMovies({
@@ -8,48 +11,29 @@ class ListViewMovies extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 250,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(right: 20, left: 10),
-            child: Stack(
-              clipBehavior: Clip.none,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: Image.network(
-                    "https://image.tmdb.org/t/p/w500/7iMBZzVZtG0oBug4TfqDb9ZxAOa.jpg",
-                    height: 210,
-                    width: 145,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Positioned(
-                  top: 120,
-                  left: -10,
-                  child: Text("${index + 1}",
-                      style: Styles.montserrat96semiBoldprimaryColor.copyWith(
-                        foreground: Paint()
-                          ..style = PaintingStyle.stroke
-                          ..strokeWidth = 2
-                          ..color = Colors.blue,
-                      )),
-                ),
-                Positioned(
-                  top: 120,
-                  left: -10,
-                  child: Text("${index + 1}",
-                      style: Styles.montserrat96semiBoldprimaryColor),
-                ),
-              ],
-            ),
-          );
-        },
-      ),
+    return BlocBuilder<FeatchMoviesCubit,FeatchMoviesState>(
+      builder: (context, state) {
+        if (state is FeatchMoviesSuccess) {
+          List<MoviesModel> movies=state.listMoview;
+  return SizedBox(
+    height: 250,
+    child: ListView.builder(
+      scrollDirection: Axis.horizontal,
+      itemCount: movies.length,
+      itemBuilder: (context, index) {
+        return ListViewMoviesItems(
+          moviesModel: movies[index],
+          index: index,
+        );
+      },
+    ),
+  );
+}else if(state is FeatchMoviesFalier){
+ return Text("${state.errorMassage}");
+}else{
+return Center(child: CircularProgressIndicator());
+}
+      },
     );
   }
 }
