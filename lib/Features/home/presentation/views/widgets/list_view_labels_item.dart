@@ -5,13 +5,13 @@ import 'package:movies_app/core/theming/colors.dart';
 import 'package:movies_app/core/theming/styles.dart';
 
 class ListViewLabelsItem extends StatelessWidget {
-  const ListViewLabelsItem({super.key, required this.categorie,
-   required this.isSellectIndex});
+  const ListViewLabelsItem(
+      {super.key, required this.categorie, required this.isSellectIndex});
   final String categorie;
   final bool isSellectIndex;
   @override
   Widget build(BuildContext context) {
-    String text = categorie; 
+    String text = categorie;
     double textWidth = _getTextWidth(text, Styles.poppins14MediumWhite);
 
     return Column(
@@ -25,8 +25,8 @@ class ListViewLabelsItem extends StatelessWidget {
           visible: isSellectIndex,
           child: Container(
             height: 4,
-            width: textWidth, 
-            decoration:const BoxDecoration(color: ColorsManager.charcoalgray),
+            width: textWidth,
+            decoration: const BoxDecoration(color: ColorsManager.charcoalgray),
           ),
         ),
       ],
@@ -40,9 +40,10 @@ class ListViewLabelsItem extends StatelessWidget {
       textDirection: TextDirection.ltr,
     )..layout();
 
-    return textPainter.width; 
+    return textPainter.width;
   }
 }
+
 List<String> categories = [
   "Now playing",
   "Upcoming",

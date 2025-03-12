@@ -4,7 +4,7 @@ import 'package:movies_app/Features/Watch_list/watch_list.dart';
 import 'package:movies_app/Features/home/presentation/views/home_view.dart';
 import 'package:movies_app/Features/search/search_view.dart';
 import 'package:movies_app/core/helpers/spacing.dart';
-import 'package:movies_app/core/routing/routes.dart';
+
 import 'package:movies_app/core/theming/colors.dart';
 import 'package:movies_app/core/theming/styles.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
@@ -62,31 +62,34 @@ class _NavbarAppState extends State<NavbarApp> {
     required int index,
   }) {
     return ZoomTapAnimation(
-       onTap: () {
-      setState(() {
-        currentPage = index;
-      });
-      controller.jumpToPage(index);
-    },
-    begin: 1.0, 
-    end: 1.2, 
+      onTap: () {
+        setState(() {
+          currentPage = index;
+        });
+        controller.jumpToPage(index);
+      },
+      begin: 1.0,
+      end: 1.2,
       child: Column(
         children: [
           SvgPicture.asset(
             icon,
             height: 28,
             width: 28,
-             colorFilter: ColorFilter.mode(
-          index==currentPage  ?ColorsManager.blueAccent:ColorsManager.greyShade,
-          BlendMode.srcIn,
-        ),
+            colorFilter: ColorFilter.mode(
+              index == currentPage
+                  ? ColorsManager.blueAccent
+                  : ColorsManager.greyShade,
+              BlendMode.srcIn,
+            ),
           ),
           verticalSpace(6),
           Text(
-         label,
+            label,
             style: Styles.roboto12RegularGray.copyWith(
-              color:  index==currentPage  ?ColorsManager.blueAccent:ColorsManager.greyShade
-            ),
+                color: index == currentPage
+                    ? ColorsManager.blueAccent
+                    : ColorsManager.greyShade),
           )
         ],
       ),
@@ -101,13 +104,9 @@ List<String> icons = [
 ];
 
 List<String> labels = ["Home", "Search", "Watch list"];
-List<String> routes = [
-  Routes.homeScreen,
-  Routes.homeScreen,
-  Routes.homeScreen,
-];
-List<Widget> screens = [
-  const HomeView(),  const SearchView(),
-  const WatchList(),
 
+List<Widget> screens = [
+  const HomeView(),
+  const SearchView(),
+  const WatchList(),
 ];

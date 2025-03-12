@@ -28,10 +28,9 @@ class HomeViewBody extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 24),
               child: CustomTextFormField(),
             ),
-            
-           const  Padding(
-              padding:EdgeInsets.only(left: 24,top: 21),
-              child:ListViewMovies(),
+            const Padding(
+              padding: EdgeInsets.only(left: 24, top: 21),
+              child: ListViewMovies(),
             ),
             verticalSpace(24),
             const ListViewLables(),
@@ -46,6 +45,3 @@ class HomeViewBody extends StatelessWidget {
     );
   }
 }
-
-
-
