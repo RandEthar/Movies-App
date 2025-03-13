@@ -15,11 +15,13 @@ class DetailsView extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorsManager.primaryColor,
       body: BlocBuilder<FeatchMoviesDetuilsCubit, FeatchMoviesDetuilsState>(
+        buildWhen: (previous, current) => current is FeatchMoviesDetuilsLoading||current is FeatchMoviesDetuilsSuccess ||
+        current is FeatchMoviesDetuilsFaluir,
         builder: (context, state) {
-          return ModalProgressHUD( 
-            inAsyncCall: state is FeatchMoviesDetuilsLoading, 
-            color: Colors.red, 
-            opacity: 0.5, 
+          return ModalProgressHUD(
+            inAsyncCall: state is FeatchMoviesDetuilsLoading,
+            color: Colors.red,
+            opacity: 0.5,
             child: SafeArea(
               child: state is FeatchMoviesDetuilsSuccess
                   ? DetailsViewBody(
@@ -27,8 +29,10 @@ class DetailsView extends StatelessWidget {
                       moviesModel: moviesModel,
                     )
                   : state is FeatchMoviesDetuilsFaluir
-                      ? Center(child: Text(state.errorMassage, style: TextStyle(color: Colors.white))) 
-                      : const SizedBox(), 
+                      ? Center(
+                          child: Text(state.errorMassage,
+                              style: TextStyle(color: Colors.white)))
+                      : const SizedBox(),
             ),
           );
         },
@@ -36,4 +40,3 @@ class DetailsView extends StatelessWidget {
     );
   }
 }
-

@@ -12,7 +12,8 @@ import 'package:movies_app/core/helpers/spacing.dart';
 import 'package:movies_app/core/theming/styles.dart';
 
 class DetailsViewBody extends StatelessWidget {
-  DetailsViewBody({super.key, required this.moviesModel, required this.detauilsMovieModel});
+  DetailsViewBody(
+      {super.key, required this.moviesModel, required this.detauilsMovieModel});
   final MoviesModel moviesModel;
   final DetauilsMovieModel detauilsMovieModel;
   @override
@@ -36,9 +37,11 @@ class DetailsViewBody extends StatelessWidget {
             ),
           ),
           verticalSpace(45),
-         DetuilsMovie(detauilsMovieModel: detauilsMovieModel,),
+          DetuilsMovie(
+            detauilsMovieModel: detauilsMovieModel,
+          ),
           verticalSpace(40),
-          const CustomTabBar(),
+          CustomTabBar(movieId: moviesModel?.id??0,),
           verticalSpace(24),
           CustomTabBarView(moviesModel: moviesModel),
         ],
