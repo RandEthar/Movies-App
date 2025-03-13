@@ -18,3 +18,17 @@ final class FeatchMoviesFalier extends FeatchMoviesState {
 
   FeatchMoviesFalier({required this.errorMassage});
 }
+
+final class FilterMoviesLoading extends FeatchMoviesState {}
+
+final class FilterMoviesSuccess extends FeatchMoviesState {
+  final List<MoviesModel> listFilterMoview;
+
+  FilterMoviesSuccess({required this.listFilterMoview});
+}
+
+final class FilterMoviesFalier extends FeatchMoviesState {
+  final String errorMassage;
+
+  FilterMoviesFalier({required this.errorMassage});
+}

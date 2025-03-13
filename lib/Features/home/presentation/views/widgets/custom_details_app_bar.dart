@@ -13,10 +13,15 @@ class CustomDetailsAppBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SvgPicture.asset(
-            "assets/svg/arrow-left.svg",
-            height: 20,
-            width: 20,
+          GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: SvgPicture.asset(
+              "assets/svg/arrow-left.svg",
+              height: 20,
+              width: 20,
+            ),
           ),
           Text(
             "Detail",

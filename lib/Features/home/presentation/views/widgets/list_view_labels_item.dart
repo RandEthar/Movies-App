@@ -49,5 +49,4 @@ List<String> categories = [
   "Upcoming",
   "Top rated",
   "Popular",
-  "Trending"
 ];

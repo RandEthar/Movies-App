@@ -4,10 +4,12 @@ import 'package:movies_app/core/theming/styles.dart';
 
 class ListViewMoviesItems extends StatelessWidget {
   const ListViewMoviesItems({
-    super.key, required this.index, required this.moviesModel,
+    super.key,
+    required this.index,
+    required this.moviesModel,
   });
- final MoviesModel moviesModel;
-final int index;
+  final MoviesModel moviesModel;
+  final int index;
   @override
   Widget build(BuildContext context) {
     return Padding(

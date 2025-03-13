@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/Features/home/data/model/movies_model.dart';
 import 'package:movies_app/Features/home/presentation/views/widgets/rating.dart';
 
 class ContenerDetailsMoveis extends StatelessWidget {
-  const ContenerDetailsMoveis({super.key});
-
+  const ContenerDetailsMoveis({super.key, required this.moviesModel});
+  final MoviesModel moviesModel;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -14,7 +15,7 @@ class ContenerDetailsMoveis extends StatelessWidget {
                 bottomLeft: Radius.circular(18),
                 bottomRight: Radius.circular(18)),
             child: Image.network(
-              "https://image.tmdb.org/t/p/w500/9nhjGaFLKtddDPtPaX5EmKqsWdH.jpg",
+              "https://image.tmdb.org/t/p/w500/${moviesModel.backdropPath}",
               height: 211,
               width: double.infinity,
               fit: BoxFit.cover,
@@ -25,16 +26,19 @@ class ContenerDetailsMoveis extends StatelessWidget {
           child: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(18)),
               child: Image.network(
-                "https://image.tmdb.org/t/p/w500/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg",
+                "https://image.tmdb.org/t/p/w500/${moviesModel.posterPath}",
                 height: 130,
                 width: 95,
                 fit: BoxFit.cover,
+                alignment: Alignment.topCenter,
               )),
         ),
-        const Positioned(
+        Positioned(
           right: 8,
           bottom: 10,
-          child: Rating(),
+          child: Rating(
+            rating: moviesModel.voteAverage ?? 0.0,
+          ),
         )
       ],
     );

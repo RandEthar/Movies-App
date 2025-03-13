@@ -5,8 +5,9 @@ import 'package:movies_app/core/theming/styles.dart';
 class Rating extends StatelessWidget {
   const Rating({
     super.key,
+    required this.rating,
   });
-
+  final double rating;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,9 +25,9 @@ class Rating extends StatelessWidget {
               width: 16,
               fit: BoxFit.scaleDown,
             ),
-            Spacer(),
+            const Spacer(),
             Text(
-              "9.5",
+              "${rating.toStringAsFixed(1)}",
               style: Styles.montserrat16semiBoldwhite
                   .copyWith(fontSize: 12, color: const Color(0xffFF8700)),
             )

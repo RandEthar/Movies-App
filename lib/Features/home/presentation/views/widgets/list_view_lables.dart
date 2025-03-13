@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:movies_app/Features/home/presentation/manger/featch_movies/featch_movies_cubit.dart';
 import 'package:movies_app/Features/home/presentation/views/widgets/list_view_labels_item.dart';
 
 class ListViewLables extends StatefulWidget {
@@ -26,8 +29,12 @@ class _ListViewLablesState extends State<ListViewLables> {
                 padding: const EdgeInsets.only(right: 12),
                 child: GestureDetector(
                     onTap: () {
-                      currentIndex = index;
-                      setState(() {});
+                      setState(() {
+                        currentIndex = index;
+                      });
+                      context
+                          .read<FeatchMoviesCubit>()
+                          .filterMovies(categories[index]);
                     },
                     child: ListViewLabelsItem(
                       categorie: categories[index],

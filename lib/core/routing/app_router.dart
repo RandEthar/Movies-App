@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/Features/home/data/model/movies_model.dart';
 import 'package:movies_app/Features/home/presentation/views/details_view.dart';
 import 'package:movies_app/Features/home/presentation/views/home_view.dart';
 import 'package:movies_app/core/routing/routes.dart';
@@ -10,7 +11,12 @@ class AppRouter {
       case Routes.homeScreen:
         return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.detailsScreen:
-        return MaterialPageRoute(builder: (_) => const DetailsView());
+        return MaterialPageRoute(builder: (_) {
+          MoviesModel moviesModel = settings.arguments as MoviesModel;
+          return DetailsView(
+            moviesModel: moviesModel,
+          );
+        });
       case Routes.navebarScreen:
         return MaterialPageRoute(builder: (_) => const NavbarApp());
       default:

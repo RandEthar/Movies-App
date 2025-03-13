@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:movies_app/Features/Watch_list/watch_list.dart';
 import 'package:movies_app/Features/home/data/repos/home_repo_Impel.dart';
-import 'package:movies_app/Features/home/presentation/manger/cubit/featch_movies_cubit.dart';
+import 'package:movies_app/Features/home/presentation/manger/featch_movies/featch_movies_cubit.dart';
 import 'package:movies_app/Features/home/presentation/views/home_view.dart';
 import 'package:movies_app/Features/search/search_view.dart';
 import 'package:movies_app/core/helpers/spacing.dart';
@@ -112,7 +112,12 @@ List<String> labels = ["Home", "Search", "Watch list"];
 
 List<Widget> screens = [
   BlocProvider(
-    create: (context) => FeatchMoviesCubit(getIt.get<HomeRepoImpel>())..featchMovies(),
+    create: (context) {
+      final cubit = FeatchMoviesCubit(getIt.get<HomeRepoImpel>());
+      cubit.featchMovies();
+      cubit.filterMovies("Now playing");
+      return cubit;
+    },
     child: const HomeView(),
   ),
   const SearchView(),
