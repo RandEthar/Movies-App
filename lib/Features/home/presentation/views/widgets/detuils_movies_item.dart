@@ -4,8 +4,9 @@ import 'package:movies_app/core/helpers/spacing.dart';
 import 'package:movies_app/core/theming/styles.dart';
 
 class DetuilsMovieItem extends StatelessWidget {
-  const DetuilsMovieItem({super.key, required this.icon});
+  const DetuilsMovieItem({super.key, required this.icon, required this.title});
   final String icon;
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -18,7 +19,7 @@ class DetuilsMovieItem extends StatelessWidget {
         ),
         horezontalSpace(6),
         Text(
-          "2021",
+          title,
           style: Styles.montserrat14MediumgrayishBlueGray,
         ),
       ],

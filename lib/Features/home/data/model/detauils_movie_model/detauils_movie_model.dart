@@ -12,7 +12,7 @@ class DetauilsMovieModel {
   String? homepage;
   int? id;
   String? imdbId;
-  List<String>? originCountry;
+  List<dynamic>? originCountry;
   String? originalLanguage;
   String? originalTitle;
   String? overview;
@@ -72,7 +72,7 @@ class DetauilsMovieModel {
       homepage: json['homepage'] as String?,
       id: json['id'] as int?,
       imdbId: json['imdb_id'] as String?,
-      originCountry: json['origin_country'] as List<String>?,
+      originCountry: json['origin_country'] as List<dynamic>?,
       originalLanguage: json['original_language'] as String?,
       originalTitle: json['original_title'] as String?,
       overview: json['overview'] as String?,
