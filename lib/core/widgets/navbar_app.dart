@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:movies_app/Features/Watch_list/watch_list.dart';
+import 'package:movies_app/Features/Watch_list/presentation/views/watch_list_views.dart';
 import 'package:movies_app/Features/home/data/repos/home_repo_Impel.dart';
 import 'package:movies_app/Features/home/presentation/manger/featch_movies/featch_movies_cubit.dart';
 import 'package:movies_app/Features/home/presentation/views/home_view.dart';
-import 'package:movies_app/Features/search/search_view.dart';
+import 'package:movies_app/Features/search/data/repos/search_repo_imple.dart';
+import 'package:movies_app/Features/search/presentation/maneger/cubit/search_cubit.dart';
+import 'package:movies_app/Features/search/presentation/views/search_view.dart';
 import 'package:movies_app/core/helpers/spacing.dart';
 
 import 'package:movies_app/core/theming/colors.dart';
 import 'package:movies_app/core/theming/styles.dart';
-import 'package:movies_app/core/utils/api_services.dart';
 import 'package:movies_app/core/utils/services_locator.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
@@ -120,6 +121,9 @@ List<Widget> screens = [
     },
     child: const HomeView(),
   ),
-  const SearchView(),
+  BlocProvider(
+    create: (context) => SearchCubit(getIt<SearchRepoImple>()),
+    child: const SearchView(),
+  ),
   const WatchList(),
 ];

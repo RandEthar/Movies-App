@@ -30,3 +30,15 @@ final class FeatchCastFaluir extends FeatchMoviesDetuilsState {
 
   FeatchCastFaluir({required this.errorMassage});
 }
+
+final class FeatchReviewSuccess extends FeatchMoviesDetuilsState {
+  final List<Review> listReviews;
+
+  FeatchReviewSuccess({required this.listReviews});
+}
+
+final class FeatchReviewFaluir extends FeatchMoviesDetuilsState {
+  final String errorMassage;
+
+  FeatchReviewFaluir({required this.errorMassage});
+}

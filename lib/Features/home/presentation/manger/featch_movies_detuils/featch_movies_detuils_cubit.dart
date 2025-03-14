@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:movies_app/Features/home/data/model/cast_model.dart';
 import 'package:movies_app/Features/home/data/model/detauils_movie_model/detauils_movie_model.dart';
+import 'package:movies_app/Features/home/data/model/review_model.dart';
 import 'package:movies_app/Features/home/data/repos/home_repo.dart';
 
 part 'featch_movies_detuils_state.dart';
@@ -28,6 +29,17 @@ class FeatchMoviesDetuilsCubit extends Cubit<FeatchMoviesDetuilsState> {
         (errors) =>
             emit(FeatchCastFaluir(errorMassage: errors.errorMessage)),
         (data) => emit(FeatchCastSuccess(listCastModel: data)));
+
+  
+  }
+   featchReviews(int moviesId) async {
+    log(" featchReviews");
+    var result = await homeRepo.featchReviewsMovie(moviesId);
+ 
+    result.fold(
+        (errors) =>
+            emit(FeatchReviewFaluir(errorMassage: errors.errorMessage)),
+        (data) => emit(FeatchReviewSuccess(listReviews: data)));
 
   
   }

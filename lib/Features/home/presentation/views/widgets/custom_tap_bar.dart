@@ -20,6 +20,8 @@ class CustomTabBar extends StatelessWidget {
       onTap: (index){
           if(index==2){
             context.read<FeatchMoviesDetuilsCubit>().featchMoviesCast(movieId);
+          }else if(index==1){
+              context.read<FeatchMoviesDetuilsCubit>().featchReviews(movieId);
           }
 
 

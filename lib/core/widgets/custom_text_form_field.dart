@@ -10,8 +10,10 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      
       cursorColor: ColorsManager.greyShade,
       decoration: InputDecoration(
+        contentPadding:const EdgeInsets.symmetric(horizontal: 20),
         suffixIcon: SvgPicture.asset(
           "assets/svg/Search_home.svg",
           height: 16,

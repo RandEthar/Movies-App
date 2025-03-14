@@ -27,4 +27,8 @@ class Styles {
       fontSize: 14,
       color: ColorsManager.grayishBlueGray,
       fontWeight: FontWeightHelper.medium);
+
+
+      static TextStyle poppins12MediumBlueAccent = GoogleFonts.poppins(
+      fontSize: 12, color: ColorsManager.blueAccent, fontWeight: FontWeightHelper.medium);
 }
