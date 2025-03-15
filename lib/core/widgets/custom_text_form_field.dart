@@ -5,12 +5,14 @@ import 'package:movies_app/core/theming/colors.dart';
 import 'package:movies_app/core/theming/styles.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({super.key});
-
+  const CustomTextFormField({super.key, this.controller, this.onChanged});
+final TextEditingController? controller;
+final void Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      
+      controller:controller ,
+      onChanged: onChanged,
       cursorColor: ColorsManager.greyShade,
       decoration: InputDecoration(
         contentPadding:const EdgeInsets.symmetric(horizontal: 20),

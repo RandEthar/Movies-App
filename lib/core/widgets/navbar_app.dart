@@ -122,7 +122,7 @@ List<Widget> screens = [
     child: const HomeView(),
   ),
   BlocProvider(
-    create: (context) => SearchCubit(getIt<SearchRepoImple>()),
+    create: (context) => SearchCubit(getIt<SearchRepoImple>())..featchPopularMovies(),
     child: const SearchView(),
   ),
   const WatchList(),

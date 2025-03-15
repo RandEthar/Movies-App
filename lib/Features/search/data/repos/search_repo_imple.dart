@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:movies_app/Features/home/data/model/detauils_movie_model/detauils_movie_model.dart';
 import 'package:movies_app/Features/home/data/model/movies_model.dart';
 import 'package:movies_app/Features/search/data/repos/search_repo.dart';
 import 'package:movies_app/core/errors/failuer.dart';
@@ -29,8 +30,38 @@ class SearchRepoImple implements SearchRepo{
   }
 
   @override
-  Future<Either<Failuer, MoviesModel>> featchSearchMovies(String name) {
-    // TODO: implement featchSearchMovies
-    throw UnimplementedError();
+  Future<Either<Failuer,List<MoviesModel>>> featchSearchMovies(String name) async{
+    try {
+    
+      var data = await apiServices.get(
+          endPoint: "search/movie?api_key=${ApiEndpoints.apiKey}&query=$name");
+      List<MoviesModel> listSearchMovies = [];
+      for (var item in data["results"]) {
+       listSearchMovies.add(MoviesModel.fromJson(item));
+      }
+      return right(listSearchMovies);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return left(ServierFaluier.fromDioError(e));
+      }
+      return left(ServierFaluier(errorMessage: e.toString()));
+    }
+  }
+
+
+    @override
+  Future<Either<Failuer, DetauilsMovieModel>> featchDetauilsMovies(
+      int idMovie) async {
+    try {
+      var data = await apiServices.get(
+          endPoint: "movie/$idMovie?api_key=${ApiEndpoints.apiKey}");
+
+      return right(DetauilsMovieModel.fromJson(data));
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return left(ServierFaluier.fromDioError(e));
+      }
+      return left(ServierFaluier(errorMessage: e.toString()));
+    }
   }
 }

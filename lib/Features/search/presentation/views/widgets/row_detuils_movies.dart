@@ -17,7 +17,8 @@ class RowDetuilsMoves extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
       
         children: [
-           SvgPicture.asset(icon,height: 16,width: 16,
+           SvgPicture.asset(
+            icon,height: 16,width: 16,
            color: Colors.white,),
            horezontalSpace(4),
            Text(text,style: Styles.poppins12MediumBlueAccent.copyWith(
