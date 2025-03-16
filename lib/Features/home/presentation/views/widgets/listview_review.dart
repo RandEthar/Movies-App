@@ -15,13 +15,11 @@ class ListviewReview extends StatelessWidget {
       builder: (context, state) {
         if (state is FeatchReviewSuccess) {
           List<Review> listReviews = state.listReviews;
-          return Expanded(
-            child: ListView.builder(
-                itemCount: listReviews.length,
-                itemBuilder: (context, index) {
-                  return  ListViewReviewsItem(review:listReviews[index] ,);
-                }),
-          );
+          return ListView.builder(shrinkWrap: true,
+              itemCount: listReviews.length,
+              itemBuilder: (context, index) {
+                return  ListViewReviewsItem(review:listReviews[index] ,);
+              });
         } else if (state is FeatchReviewFaluir) {
           return Center(child: Text(state.errorMassage));
         }

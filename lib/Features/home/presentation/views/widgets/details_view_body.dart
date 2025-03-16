@@ -29,8 +29,8 @@ class DetailsViewBody extends StatelessWidget {
             moviesModel: moviesModel,
           ),
           Padding(
-            padding: EdgeInsets.only(
-                left: MediaQuery.of(context).size.width * .1, top: 12),
+            padding:const  EdgeInsets.only(
+              left: 140 , right: 29, top: 12),
             child: Text(
               moviesModel?.title ?? "",
               style: Styles.poppins18SemiBoldWhite,
