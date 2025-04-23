@@ -35,7 +35,7 @@ class ListViewMovies extends StatelessWidget {
         } else if (state is FeatchMoviesFalier) {
           return Text("${state.errorMassage}");
         } else {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         }
       },
     );

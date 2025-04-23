@@ -21,27 +21,29 @@ class ListViewSearch extends StatelessWidget {
       builder: (context, state) {
         List<MoviesModel> listMovies = [];
 
-        if (state is FetchPopularSuccess || state is SearchMoviesSuccess) {
-          listMovies = (state as dynamic).listMovies; 
-          
-          if (listMovies.isEmpty) {
-            return const Center(
-              child:NotFound(),
-            );
-          }
+     if (state is FetchPopularSuccess || state is SearchMoviesSuccess) {
+  listMovies = (state as dynamic).listMovies ?? []; 
+  
+  if (listMovies.isEmpty) {
+    return const Center(
+      child: NotFound(),
+    );
+  }
 
-          return ListView.builder(
-            itemCount: listMovies.length,
-            itemBuilder: (context, index) {
-               context.read<SearchCubit>().featchMoviesDetuils(listMovies[index].id ?? 0);
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 24),
-                
-                child: ListViewSearchItem(moviesModel: listMovies[index]),
-              );
-            },
-          );
-        }
+  return ListView.builder(
+    itemCount: listMovies.length,
+    itemBuilder: (context, index) {
+      if (index >= listMovies.length) {
+        return const SizedBox(); 
+      }
+
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 24),
+        child: ListViewSearchItem(moviesModel: listMovies[index]),
+      );
+    },
+  );
+}
 
         if (state is FetchPopularLoading || state is SearchMoviesLoading) {
           return const Center(

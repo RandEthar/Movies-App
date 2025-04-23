@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:movies_app/Features/home/data/local/hive_services.dart';
 import 'package:movies_app/Features/home/data/model/movies_model.dart';
 import 'package:movies_app/Features/home/data/repos/home_repo.dart';
 
@@ -14,9 +15,17 @@ class FeatchMoviesCubit extends Cubit<FeatchMoviesState> {
     emit(FeatchMoviesLoading());
     var result = await homeRepo.featchMovies("popular");
 
-    result.fold(
-        (errors) => emit(FeatchMoviesFalier(errorMassage: errors.errorMessage)),
-        (data) => emit(FeatchMoviesSuccess(listMoview: data)));
+    result.fold((errors) {
+      final cachedNews = HiveServisces.getCachedMovies();
+      if (cachedNews != null) {
+        emit(FeatchMoviesSuccess(listMoview: cachedNews, isFromCach: true));
+      } else {
+        emit(FeatchMoviesFalier(errorMassage: errors.errorMessage));
+      }
+    }, (data) {
+      HiveServisces.cachMovies(data);
+      emit(FeatchMoviesSuccess(listMoview: data, isFromCach: false));
+    });
   }
 
   filterMovies(String category) async {

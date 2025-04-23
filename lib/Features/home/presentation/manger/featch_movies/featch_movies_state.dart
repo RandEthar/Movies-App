@@ -9,8 +9,8 @@ final class FeatchMoviesLoading extends FeatchMoviesState {}
 
 final class FeatchMoviesSuccess extends FeatchMoviesState {
   final List<MoviesModel> listMoview;
-
-  FeatchMoviesSuccess({required this.listMoview});
+final bool isFromCach;
+  FeatchMoviesSuccess( {required this.listMoview,required this.isFromCach,});
 }
 
 final class FeatchMoviesFalier extends FeatchMoviesState {

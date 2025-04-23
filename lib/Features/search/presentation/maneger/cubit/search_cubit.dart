@@ -16,7 +16,7 @@ class SearchCubit extends Cubit<SearchState> {
    TextEditingController nameController=TextEditingController();
   final SearchRepo searchRepo;
   featchPopularMovies() async {
-    log("rand1");
+  
     emit(FetchPopularLoading());
     var result = await searchRepo.featchPopularMovies();
     result.fold((error) {
@@ -26,7 +26,7 @@ class SearchCubit extends Cubit<SearchState> {
     });
   }
    searchMovies(String name) async {
-    log("rand2");
+
     emit(SearchMoviesLoading());
     var result = await searchRepo.featchSearchMovies(name);
     result.fold((error) {

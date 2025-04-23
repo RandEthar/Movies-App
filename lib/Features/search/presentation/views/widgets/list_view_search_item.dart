@@ -59,7 +59,9 @@ class ListViewSearchItem extends StatelessWidget {
                  verticalSpace(4),
                RowDetuilsMoves(
                 icon: "assets/svg/Ticket.svg",
-                text:getGenreName(moviesModel.genreIds![0]??0),
+   text: getGenreName((moviesModel.genreIds?.isNotEmpty ?? false) 
+    ? moviesModel.genreIds![0] 
+    : 0),
               ),
                  verticalSpace(4),
                RowDetuilsMoves(
